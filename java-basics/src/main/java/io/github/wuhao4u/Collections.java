@@ -93,16 +93,6 @@ public class Collections {
                 values.push(Integer.parseInt(sbuf.toString()));
                 --i;
             }
-            // Current token is an opening brace, push it to 'ops'
-            else if (tokens[i] == '(')
-                ops.push(tokens[i]);
-
-                // Closing brace encountered, solve entire brace
-            else if (tokens[i] == ')') {
-                while (ops.peek() != '(')
-                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
-                ops.pop();
-            }
 
             // Current token is an operator.
             else if (tokens[i] == '+' || tokens[i] == '-' ||
@@ -110,8 +100,9 @@ public class Collections {
                 // While top of 'ops' has same or greater precedence to current
                 // token, which is an operator. Apply operator on top of 'ops'
                 // to top two elements in values stack
-                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek()))
+                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek())) {
                     values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                }
 
                 // Push current token to 'ops'.
                 ops.push(tokens[i]);
@@ -158,7 +149,7 @@ public class Collections {
     public static void main(String[] args) {
 //        list();
 //        linkedList();
-        System.out.println(Collections.calculate("1+2"));
-        System.out.println(Collections.calculate("1 + 2 * 5"));
+//        System.out.println(Collections.calculate("1+2"));
+        System.out.println(Collections.calculate("1+2*5"));
     }
 }
