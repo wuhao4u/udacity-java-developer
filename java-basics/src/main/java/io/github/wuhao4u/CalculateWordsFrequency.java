@@ -28,10 +28,23 @@ public class CalculateWordsFrequency {
         return result;
     }
 
+    public static Map<String, Integer> stringFrequency1(List<String> input) {
+        Map<String, Integer> result = new TreeMap<>();
+
+        if (input == null || input.size() == 0) {
+            return result;
+        }
+
+        for (String in : input) {
+            result.put(in, result.getOrDefault(in, 0) + 1);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 //        List<String> l1 = Arrays.asList("abc", "bcd", "abc");
         List<String> l1 = Arrays.asList("yiersan", "abc", "bcd", "abc");
-        Map<String, Integer> r1 =CalculateWordsFrequency.stringFrequency(l1);
+        Map<String, Integer> r1 =CalculateWordsFrequency.stringFrequency1(l1);
         System.out.println(Printer.convertWithStream(r1));
     }
 }
