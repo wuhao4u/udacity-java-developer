@@ -146,6 +146,7 @@ public class Collections {
         return 0;
     }
 
+
     public static void main(String[] args) {
 //        list();
 //        linkedList();
